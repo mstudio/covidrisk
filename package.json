@@ -1,10 +1,9 @@
 {
-  "name": "ibm-athena-ui",
+  "name": "covidrisk",
   "repository": {
     "type": "git",
-    "url": "https://github.ibm.com/Project-Athena/athena-ui"
+    "url": "https://github.com/mstudio/covidrisk"
   },
-  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -16,19 +15,13 @@
   "dependencies": {
     "@carbon/grid": "^10.6.0",
     "async": "^2.6.0",
-    "autosuggest-highlight": "^3.1.1",
-    "awesome-phonenumber": "^2.28.0",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
     "connect-timeout": "^1.9.0",
     "console-stamp": "^0.2.6",
     "core-js": "^3.2.1",
-    "entities": "^2.0.0",
     "express": "^4.16.2",
     "lodash": "^4.17.4",
-    "moment": "^2.24.0",
-    "react-autosuggest": "^9.4.3",
-    "react-paginate": "^6.3.2",
     "request": "^2.83.0",
     "url-search-params-polyfill": "^7.0.0"
   },
@@ -91,12 +84,10 @@
     "analyze": "rm -rf public/build && NODE_ENV=production webpack -p --config ./webpack.analyze.config.js --progress --profile --colors",
     "test": "jest --watchAll"
   },
-  "author": "Ogilvy",
+  "author": "Alex Motzenbecker",
   "license": "",
   "browserslist": [
     "last 3 versions",
-    "Firefox >= 45",
-    "Firefox ESR",
-    "not IE <= 10"
+    "not IE <= 11"
   ]
 }
