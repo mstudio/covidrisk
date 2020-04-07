@@ -1,0 +1,33 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": 3
+      }
+    ],
+    "@babel/preset-react"
+  ],
+
+  "plugins": [
+    "@babel/plugin-transform-async-to-generator",
+    "react-hot-loader/babel",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-object-rest-spread",
+    [
+      "transform-imports",
+      {
+        "carbon-components-react": {
+          "transform": "carbon-components-react/lib/components/${member}",
+          "preventFullImport": true
+        },
+        "lodash": {
+          "transform": "lodash/${member}",
+          "preventFullImport": true
+        }
+      }
+    ]
+  ]
+}

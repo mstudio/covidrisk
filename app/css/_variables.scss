@@ -1,0 +1,39 @@
+@import "carbon-components/scss/globals/scss/vars.scss";
+
+$sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+
+$white: #ffffff;
+$black: #000000;
+$athena-purple-70: #6e32c9;
+$athena-purple-60: #8a3ffc;
+$athena-purple-50: #a66efa;
+$athena-purple-be: #be98ff;
+$athena-gray-100: #171717;
+$athena-gray-90: #242424;
+$athena-gray-80: #3d3d3d;
+$athena-gray-60: #6f6f6f;
+$athena-gray-50: #8c8c8c;
+$athena-gray-30: #bebebe;
+$athena-gray-20: #dcdcdc;
+$athena-gray-a4: #a4a4a4;
+$athena-cyan-70: #0058a1;
+$athena-cyan-60: #0072c3;
+$athena-cyan-30: #6ccaff;
+
+$focus-outline: $ibm-color__blue-60;
+
+$text-gray1: $gray-60;
+$text-gray2: $gray-50;
+$error-red: $red-60;
+$success-green: $carbon--green-60;
+
+$placeholder-gray: #a4a4a4;
+
+// breakpoint sizes www.carbondesignsystem.com/guidelines/layout
+$small: 320px;
+$smallmedium: 400px;
+$medium: 760px;
+$mediumlarge: 860px;
+$large: 1056px;
+$xlarge: 1312px;
+$max: 1584px;

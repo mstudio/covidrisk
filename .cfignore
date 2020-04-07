@@ -1,0 +1,16 @@
+node_modules/
+.DS_STORE
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.nodemonignore
+.sass-cache/
+public/lib
+app/tests/coverage/
+logs/*.log
+.bower-*/
+.idea/
+tmp/

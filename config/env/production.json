@@ -1,0 +1,16 @@
+{
+  "app_server": {
+    "isDev": true,
+    "port": 80,
+    "request_timeout": 45000,
+    "body_parser": {
+      "json": {
+        "limit": "50mb"
+      },
+      "urlencoded": {
+        "limit": "50mb",
+        "extended": true
+      }
+    }
+  }
+}

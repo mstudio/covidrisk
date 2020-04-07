@@ -1,0 +1,199 @@
+@import "carbon-components/scss/globals/scss/helper-mixins";
+@import "variables";
+
+@mixin box-shadow() {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.11);
+}
+
+@mixin breakpoint($point) {
+  @if $point==small {
+    @media (max-width: $small) {
+      @content;
+    }
+  }
+
+  @if $point==smallmedium {
+    @media (max-width: $smallmedium) {
+      @content;
+    }
+  } @else if $point==medium {
+    @media (max-width: $medium) {
+      @content;
+    }
+  } @else if $point==mediumlarge {
+    @media (max-width: $mediumlarge) {
+      @content;
+    }
+  } @else if $point==large {
+    @media (max-width: $large) {
+      @content;
+    }
+  } @else if $point==xlarge {
+    @media (max-width: $xlarge) {
+      @content;
+    }
+  } @else if $point==max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else if $point {
+    // allows custom breakpoints
+    @media (max-width: $point) {
+      @content;
+    }
+  }
+}
+
+@keyframes fade-in-animation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@mixin cta-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include breakpoint(medium) {
+    align-items: flex-start;
+    padding-right: 2.5rem !important;
+  }
+
+  .bx--row {
+    display: flex;
+
+    .content {
+      display: flex;
+      align-items: flex-start;
+
+      @include breakpoint(medium) {
+        flex-direction: column;
+      }
+
+      .owl {
+        position: relative;
+        top: -7px;
+        margin-right: $spacing-02;
+      }
+
+      h1 {
+        color: $white;
+        font-size: rem(55px);
+        margin-bottom: $spacing-06;
+
+        @include breakpoint(medium) {
+          font-size: rem(40px);
+        }
+      }
+
+      p {
+        margin-bottom: $spacing-05;
+        color: $white;
+        @include type-style("productive-heading-03");
+      }
+    }
+  }
+}
+
+@mixin fade-in {
+  animation: fade-in-animation 1s;
+}
+
+.fade-in {
+  @include fade-in();
+}
+
+@mixin overflow-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// Dark/grey background on text inputs and Search autosuggest
+@mixin dark-mode-form {
+  input[type="text"] {
+    color: $white;
+    background-color: $athena-gray-80;
+
+    &:focus {
+      outline-color: $white;
+    }
+  }
+
+  svg.bx--search-magnifier {
+    fill: $athena-gray-30;
+    width: 20px;
+    height: 20px;
+  }
+
+  .bx--search-close {
+    width: rem(44px);
+    height: rem(44px);
+    svg {
+      fill: $white;
+    }
+
+    &::before {
+      display: none;
+    }
+
+    &:focus,
+    &:hover {
+      outline-color: $white !important;
+      background-color: $athena-gray-30 !important;
+    }
+  }
+
+  button:focus {
+    outline-color: $white;
+  }
+
+  .react-autosuggest {
+    &__input {
+      color: $white;
+      background-color: $athena-gray-80;
+    }
+    &__suggestions-container {
+      background-color: $athena-gray-80;
+      ul {
+        li {
+          div.suggestion {
+            span {
+              color: $white;
+            }
+            .highlight {
+              color: $athena-purple-be;
+            }
+            svg {
+              fill: $white;
+            }
+          }
+        }
+      }
+    }
+
+    // "Saved" search results
+    &__section-title {
+      .section-title {
+        span {
+          color: $athena-gray-30;
+        }
+      }
+    }
+  }
+
+  &.multiple {
+    .react-autosuggest__section-container {
+      &--first {
+        border-bottom: 1px solid $athena-gray-30;
+      }
+    }
+  }
+}

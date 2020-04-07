@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Athena Local",
+      "url": "http://localhost",
+      "webRoot": "${workspaceFolder}",
+      "breakOnLoad": true,
+      "sourceMaps": true,
+      "smartStep": true,
+      "trace": "verbose",
+      "sourceMapPathOverrides": {
+        "webpack:///./": "${workspaceFolder}"
+      }
+    }
+  ]
+}
