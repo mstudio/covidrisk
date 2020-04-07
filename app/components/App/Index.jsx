@@ -5,13 +5,24 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import * as d3 from 'd3';
 
+import ChartUtils from '../../utilities/ChartUtils';
 import RequestUtils from '../../utilities/RequestUtils';
 
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
-  // const [user, setUser] = useState({});
+  let svg;
+  let g;
+
+  // renders the static components and creates a group for dynamic components to be drawn
+  const renderChart = () => {
+    svg = d3.select('svg.chart');
+    ChartUtils.renderChartBG(this.svg, this.props.width, this.props.height, this.props.margin);
+    ChartUtils.renderKeyBG(this.svg, this.props.width, this.props.height, this.props.margin, this.props.keyDimensions);
+    g = svg.append('g'); // main group for dynamic components of the chart
+  };
 
   const loadData = () => {
     // Session
@@ -19,6 +30,7 @@ const Index = () => {
       .then((result) => {
         console.log('got result', result);
         setLoading(false);
+        renderChart();
       }).catch((e) => {
         // display error
       });
