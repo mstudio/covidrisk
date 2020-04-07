@@ -1,15 +1,5 @@
-import api from '../config/api.json';
 
 export default class RequestUtils {
-  // Returns relevent api urls based on node environment, which is injected via Webpack.
-  // If undefined, returns production urls.
-  static getAPI() {
-    // @ts-ignore
-    // eslint-disable-next-line no-undef
-    if (NODE_ENV && api[NODE_ENV]) return api[NODE_ENV];
-    return api.production;
-  }
-
   static getBody(options) {
     const {
       body,
@@ -42,7 +32,7 @@ export default class RequestUtils {
       ...options,
       body: RequestUtils.getBody(options)
     };
-    if (!requestInit.credentials) requestInit.credentials = 'include';
+    // if (!requestInit.credentials) requestInit.credentials = 'include';
     const requestObject = new Request(url, requestInit);
     const response = await fetch(requestObject);
     if (handleErrors) RequestUtils.globalErrorIdentifier(response);
@@ -95,20 +85,5 @@ export default class RequestUtils {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
-  }
-
-  // checks getuserdetail endpoint every few minutes in order to check if user's session has expired
-  // if so, redirects to login page
-  static initAuthPolling() {
-    const INTERVAL_MINUTES = 5;
-    setInterval(() => {
-      RequestUtils.request(RequestUtils.getAPI().user.url, 'GET')
-        .then(() => {
-          // on success, do nothing
-        }).catch(() => {
-          // on error, redirect to login page with CTA to login again
-          window.location.href = '/login';
-        });
-    }, INTERVAL_MINUTES * 60 * 1000);
   }
 }

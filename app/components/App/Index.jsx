@@ -5,14 +5,13 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import RequestUtils from '../../utilities/RequestUtils';
 
 
-const Index = ({ location }) => {
+const Index = () => {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
 
   const loadData = () => {
     // Session
@@ -27,12 +26,12 @@ const Index = ({ location }) => {
 
   useEffect(() => {
     loadData();
-  }, [])
+  }, []);
 
 
   if (loading) {
-    //return <LoadingMessage text="Loading data..." />;
-    return <span> loading...</span>
+    // return <LoadingMessage text="Loading data..." />;
+    return <span> loading...</span>;
   }
 
   return (
@@ -42,9 +41,6 @@ const Index = ({ location }) => {
   );
 };
 
-Index.propTypes = {
-  location: PropTypes.object.isRequired
-};
 
 export default Index;
 
