@@ -49,6 +49,7 @@ const Index = () => {
   return (
     <main role="main">
       data loaded
+      <svg className="chart" />
     </main>
   );
 };

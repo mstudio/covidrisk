@@ -9,7 +9,7 @@
   "main": "server.js",
   "keywords": [],
   "engines": {
-    "node": "8.x.x",
+    "node": "10.x.x",
     "npm": "~6.x.x"
   },
   "dependencies": {
@@ -83,10 +83,11 @@
     "build": "rm -rf public/build && NODE_ENV=production webpack -p --config ./webpack.production.config.js --progress --profile --colors",
     "build_win": "webpack -p --config ./webpack.production.config.js --progress --profile --colors",
     "analyze": "rm -rf public/build && NODE_ENV=production webpack -p --config ./webpack.analyze.config.js --progress --profile --colors",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "postinstall": "npm run build"
   },
   "author": "Alex Motzenbecker",
-  "license": "",
+  "license": "MIT",
   "browserslist": [
     "last 3 versions",
     "not IE <= 11"
