@@ -26,7 +26,7 @@ const Index = () => {
 
   const loadData = () => {
     // Session
-    RequestUtils.request('http://covidtracking.com/api/us', 'GET')
+    RequestUtils.request('//covidtracking.com/api/us', 'GET')
       .then((result) => {
         console.log('got result', result);
         setLoading(false);
