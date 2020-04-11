@@ -7,4 +7,4 @@ const initConsoleLogging = (env) => {
   }
 };
 
-export { initNewRelicBrowserMonitor, initConsoleLogging };
+export { initConsoleLogging };

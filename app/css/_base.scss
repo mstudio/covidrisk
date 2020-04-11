@@ -2,58 +2,11 @@
 @import "variables";
 
 body {
-  background-color: $ui-01;
+  font-size: $browser-context;
+  background-color: $background-color;
 
   .bx--grid {
     max-width: rem(1056px);
-
-    &--no-padding {
-      padding: 0;
-    }
-  }
-
-  &.landing-page,
-  &.page-404,
-  &.login-page,
-  &.purple-bg {
-    background-color: $athena-purple-60;
-    color: $white;
-
-    // updates for accessibility contrast
-    .bx--label,
-    .bx--form__helper-text,
-    .bx--label-description,
-    .bx--list-box__menu-item,
-    .bx--list-box__menu-item__option,
-    .bx--text-input::placeholder,
-    .bx--toggle-input__label,
-    .bx--data-table-header__description,
-    .bx--data-table td,
-    .bx--structured-list-td,
-    .bx--overflow-menu-options__btn,
-    .bx--content-switcher-btn,
-    .bx--dropdown-link,
-    .bx--modal-header__label,
-    .bx--tooltip__label {
-      color: $white;
-    }
-
-    .bx--search-magnifier,
-    .bx--list-box__selection > svg,
-    .bx--overflow-menu-options__btn svg,
-    .bx--content-switcher__icon {
-      // fill: $white;
-    }
-  }
-
-  // warning/error notifications
-  .bx--inline-notification__title {
-    color: $athena-gray-100 !important;
-  }
-
-  // ensure the "Feedback" button is always on top level and available to user, even when modals are active
-  .usabilla_live_button_container {
-    z-index: 9999 !important;
   }
 
   .hidden {
@@ -82,65 +35,14 @@ body {
   }
 
   a {
-    color: $athena-cyan-60;
-    text-decoration: none;
-  }
-
-  button {
-    border: none;
-    background: none;
-    cursor: pointer;
-
-    &.bx--btn--primary {
-      background-color: $athena-cyan-60;
-      &:hover {
-        background-color: $athena-cyan-70;
-      }
-    }
-    &.bx--btn--secondary {
-      background-color: $athena-gray-100;
-      &:hover {
-        background-color: $black;
-      }
-    }
-  }
-
-  .bx--btn--athena {
-    background: $athena-purple-60;
-    color: $white;
-    border: 1px solid $white;
-
-    &:hover {
-      background: $white;
-      color: $athena-purple-60;
-    }
+    // text-decoration: none;
+    color: $link-blue;
   }
 }
 
 .page {
-  padding-top: $spacing-09 * 2;
-  padding-bottom: $spacing-07 * 4;
-}
-
-// Firefox version < 66 prefix add for the Carbon tool tips
-.bx--tooltip__trigger.bx--tooltip--top::after,
-.bx--tooltip__trigger.bx--tooltip--top:focus + .bx--assistive-text,
-.bx--tooltip__trigger.bx--tooltip--top:focus .bx--assistive-text,
-.bx--tooltip__trigger.bx--tooltip--top:hover + .bx--assistive-text,
-.bx--tooltip__trigger.bx--tooltip--top:hover .bx--assistive-text {
-  width: -moz-max-content;
-}
-
-// IE11 fixes
-.bx--tooltip__trigger {
-  display: block !important;
-}
-
-.bx--list-box__menu-icon,
-.bx--search .bx--search-close {
-  top: 2px !important;
-}
-
-input::-ms-clear {
-  display: none;
+  max-width: 1024px;
+  position: relative;
+  margin: 0 auto;
+  padding: rem(48) rem(20) rem(60) rem(20);
 }

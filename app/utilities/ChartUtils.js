@@ -2,12 +2,16 @@
  * d3 Charting line drawing, scaling etc
  */
 import * as d3 from 'd3';
+import { getPercent } from './MathUtils';
+
+export const colors = ['#4682b4', '#b4b7b9'];
 
 export const drawBarChart = (selector, data) => {
   const width = 540;
   const height = 540;
+  const color = d3.scaleOrdinal(colors);
   const margin = ({
-    top: 30, right: 0, bottom: 30, left: 80
+    top: 30, right: 0, bottom: 30, left: 100
   });
   const svg = d3.select(selector);
 
@@ -42,28 +46,17 @@ export const drawBarChart = (selector, data) => {
     .call(yAxis);
 
   svg.append('g')
-    .attr('fill', 'steelblue')
     .selectAll('rect')
     .data(data)
     .join('rect')
     .attr('x', (d, i) => x(i))
     .attr('y', d => y(d.value))
     .attr('height', d => y(0) - y(d.value))
-    .attr('width', x.bandwidth());
-
-  
-
-  // const numberOfTicks = 6;
-
-  // const xAxisGrid = xAxis.ticks(numberOfTicks)
-  //   .tickSize(-height, 0)
-  //   .tickFormat('')
-  //   .orient('top');
-
-  // svg.append('g')
-  //   .classed('x', true)
-  //   .classed('grid', true)
-  //   .call(xAxisGrid);
+    .attr('width', x.bandwidth())
+    .attr('fill', (d, i) => {
+      console.log('filling ', i);
+      return color(i);
+    });
 };
 
 export const drawDonutChart = (selector, data) => {
@@ -76,7 +69,7 @@ export const drawDonutChart = (selector, data) => {
     .append('g')
     .attr('transform', `translate(${width / 2}, ${height / 2})`);
 
-  const color = d3.scaleOrdinal(['#2872c4', '#99e3ff']);
+  const color = d3.scaleOrdinal(colors);
 
   const pie = d3.pie()
     .value(d => d.value)
@@ -107,13 +100,14 @@ export const drawDonutChart = (selector, data) => {
       .each(function(d) { this._current = d; });
   }
 
-  const percent = Math.round((data[0].value / (data[0].value + data[1].value)) * 100);
+  const percent = getPercent(data[0].value, (data[0].value + data[1].value));
 
   svg.append('g')
     .attr('text-anchor', 'middle')
     .append('text')
-    .text(`${percent}%`)
-    .attr('class', 'title');
+    .text(percent)
+    .attr('class', 'title')
+    .attr('y', '30px');
 
 
   update();

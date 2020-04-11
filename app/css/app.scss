@@ -1,19 +1,4 @@
-// $css--plex: true;
-// $css--typography: true;
-
-// ignore feature-flag warning in console.
-// this will be phased out.
-$feature-flags: (
-  ui-shell: true,
-  grid-columns-16: true
-);
-
-@import 'carbon-components/scss/globals/scss/vendor/@carbon/layout/scss/breakpoint.scss';
-@import 'carbon-components/scss/globals/scss/styles.scss';
-@import 'carbon-components/scss/globals/grid/grid';
-@import 'carbon-components/scss/globals/scss/layout';
-@import 'variables';
-@import 'base';
-@import 'mixins';
-@import 'typography';
-
+@import "variables";
+@import "base";
+@import "mixins";
+@import "typography";

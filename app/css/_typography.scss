@@ -1,62 +1,15 @@
-@import "carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family.scss";
-@import "carbon-components/scss/globals/scss/typography.scss";
+@import url("https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap");
 
-/**
-  WEIGHT/STYLE USAGE
-.bx--type-mono	Specify the font face as IBM Plex Mono
-.bx--type-sans	Specify the font face as IBM Plex Sans
-.bx--type-serif	Specify the font face as IBM Plex Serif
-.bx--type-light	Specify the font weight as light (300)
-.bx--type-regular	Specify the font weight as regular (400)
-.bx--type-semibold	Specify the font weight as semibold (600)
-.bx--type-italic	Specify the font style as italic
-.bx--type-<type-style>	Set styles for the given type style
-*/
-
-// NOTE: please refer to the following for type styles: www.carbondesignsystem.com/guidelines/themes/
-
-h1,
-.productive-heading-05 {
-  @include type-style("productive-heading-05"); // 32px font-size / 40px line-height
+body {
+  font-family: $sans;
 }
 
-h2,
-.productive-heading-04 {
-  @include type-style("productive-heading-04"); // 28px font-size / 36px line-height
+h1 {
+  font-size: rem(48px);
 }
 
-h3,
-.productive-heading-03 {
-  @include type-style("productive-heading-03"); // 20px font-size / 26px line-height
-}
-
-h4,
-.heading-02 {
-  @include type-style("heading-02"); // 16px font-size / 22px line-height
-}
-
-h5,
-.heading-01 {
-  @include type-style("heading-01"); // 14px font-size / 18px line-height
-}
-
-p,
-.body-short-02 {
-  @include type-style("body-short-02"); // 16px font-size / 22px line-height
-}
-
-p.body-short-01,
-p.small {
-  @include type-style("body-short-01"); // 14px font-size / 18px line-height
-}
-
-p.body-long-01 {
-  @include type-style("body-long-01");
-}
-
-p.caption,
-.catpion-01 {
-  @include type-style("caption-01"); // 12px font-size / 16px line-height
+h2 {
+  font-size: rem(36px);
 }
 
 .semibold {

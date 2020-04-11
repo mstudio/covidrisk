@@ -1,3 +1,5 @@
+@import "../../css/_mixins.scss";
+
 .bx {
   &--row {
     display: flex;
@@ -10,7 +12,68 @@
   }
 }
 
+.intro {
+  &--header {
+    p {
+      font-size: rem(18);
+      line-height: 1.5;
+    }
+  }
+}
+
+.chart-container {
+  margin: rem(20) 0 rem(120) 0;
+}
+
 .chart {
+  &--header {
+    text-align: center;
+    margin: rem(40) 0 rem(50) 0;
+
+    h2 {
+      font-size: rem(36);
+    }
+
+    .caption {
+      display: flex;
+      justify-content: center;
+      span {
+        display: inline-block;
+        margin: 0 rem(32);
+        position: relative;
+        font-size: rem(20);
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          left: -32px;
+          width: rem(25);
+          height: rem(25);
+        }
+      }
+      &--a {
+        &::before {
+          background-color: #4682b4;
+        }
+      }
+      &--b {
+        &::before {
+          background-color: #b4b7b9;
+        }
+      }
+    }
+
+    span.note {
+      display: inline-block;
+      margin: rem(10);
+    }
+  }
+  &--donut {
+    text.title {
+      font-size: rem(100);
+      font-weight: bold;
+    }
+  }
   &--bar {
     g.tick {
       line {
