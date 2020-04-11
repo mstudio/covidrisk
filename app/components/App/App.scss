@@ -1,0 +1,21 @@
+.bx {
+  &--row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &--col {
+    display: flex;
+    width: 50%;
+  }
+}
+
+.chart {
+  &--bar {
+    g.tick {
+      line {
+        stroke: #b4b7b9;
+      }
+    }
+  }
+}

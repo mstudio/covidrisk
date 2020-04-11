@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer, setConfig } from 'react-hot-loader';
 
-import Index from './components/App/Index';
+import App from './components/App/App';
 
 setConfig({
   // removes "react-🔥-dom patch is not detected warning" in dev mode
@@ -12,7 +12,7 @@ setConfig({
 const render = () => {
   ReactDOM.render(
     <AppContainer>
-      <Index />
+      <App />
     </AppContainer>,
     document.getElementById('root')
   );
@@ -20,5 +20,5 @@ const render = () => {
 
 render();
 
-if (module.hot) module.hot.accept('./components/App/Index', () => { render(); });
+if (module.hot) module.hot.accept('./components/App/App', () => { render(); });
 
