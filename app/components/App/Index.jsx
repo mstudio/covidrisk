@@ -5,32 +5,30 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import * as d3 from 'd3';
 
-import ChartUtils from '../../utilities/ChartUtils';
+import { drawDonutChart } from '../../utilities/ChartUtils';
 import RequestUtils from '../../utilities/RequestUtils';
-
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
-  let svg;
-  let g;
+  const [usData, setUSData] = useState(null);
 
   // renders the static components and creates a group for dynamic components to be drawn
-  const renderChart = () => {
-    svg = d3.select('svg.chart');
-    ChartUtils.renderChartBG(this.svg, this.props.width, this.props.height, this.props.margin);
-    ChartUtils.renderKeyBG(this.svg, this.props.width, this.props.height, this.props.margin, this.props.keyDimensions);
-    g = svg.append('g'); // main group for dynamic components of the chart
+  const renderChart = (data) => {
+    drawDonutChart('#chart-1', [
+      { key: 'Positive', count: data.positive },
+      { key: 'Negative', count: data.negative }
+    ]);
   };
 
   const loadData = () => {
     // Session
-    RequestUtils.request('//covidtracking.com/api/us', 'GET')
+    RequestUtils.request('/api/data/us/current', 'GET')
       .then((result) => {
         console.log('got result', result);
+        setUSData(result[0]);
         setLoading(false);
-        renderChart();
+        renderChart(result[0]);
       }).catch((e) => {
         // display error
       });
@@ -40,16 +38,19 @@ const Index = () => {
     loadData();
   }, []);
 
-
-  if (loading) {
-    // return <LoadingMessage text="Loading data..." />;
-    return <span> loading...</span>;
-  }
-
   return (
     <main role="main">
-      data loaded
-      <svg className="chart" />
+
+      {usData &&
+      <React.Fragment>
+        <span>Positive {usData.positive.toLocaleString()}</span>
+        <span>Negative {usData.negative.toLocaleString()}</span>
+      </React.Fragment>
+      }
+      {/* <div className="chart" id="chart-1" /> */}
+      <svg className="chart" width="100%" height="100%" preserveAspectRatio="xMinYMin meet" viewBox="0 0 540 540" id="chart-1" />
+
+      {loading && <span> loading...</span>}
     </main>
   );
 };

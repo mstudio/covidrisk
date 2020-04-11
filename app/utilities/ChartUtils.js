@@ -3,154 +3,76 @@
  */
 import * as d3 from 'd3';
 
-class ChartUtils {
-  static generateLines(g, xScale, yScale, data, type = 'future') {
-    const lines = g.selectAll(`.${type}`).data(data);
+export const drawDonutChart = (selector, data) => {
+  const width = 540;
+  const height = 540;
+  const radius = Math.min(width, height) / 2;
+  const innerRadius = radius / 1.5;
 
-    const indexOffset = (type === 'future') ? 1 : 0;
-    const line = d3.line()
-      .curve(d3.curveLinear)
-      .x((d, i) => xScale(i + indexOffset))
-      .y((d, i) => yScale(d.value));
+  const svg = d3.select(selector)
+    // .append('svg')
+    // .attr('width', '100%')
+    // .attr('height', '100%')
+    // .attr('preserveAspectRatio', 'xMinYMin meet')
+    // .attr('viewBox', `0 0 ${width} ${height}`)
+    .append('g')
+    .attr('transform', `translate(${width / 2}, ${height / 2})`);
 
+  const color = d3.scaleOrdinal(['#2872c4', '#99e3ff']);
 
-    // transition from previous paths to new paths
-    lines.transition().duration(750)
-      .attr('d', line);
+  const pie = d3.pie()
+    .value(d => d.count)
+    .sort(null);
 
-    // enter any new data
-    lines.enter()
-      .append('path')
-      .attr('fill', 'none')
-      .attr('d', line)
-      .attr('class', (d, i) => `line line-${i} ${type}`)
-      .style('fill-opacity', 1e-6)
-      .style('stroke-opacity', 1e-6)
-      .attr('vector-effect', 'non-scaling-stroke')
-      .transition()
-      .duration(1500)
-      .style('fill-opacity', 1)
-      .style('stroke-opacity', 1);
-    // exit
-    lines.exit()
-      .style('fill-opacity', 1)
-      .style('stroke-opacity', d => 1)
-      .transition()
-      .duration(1300)
-      .style('fill-opacity', 1e-6)
-      .style('stroke-opacity', 1e-6)
-      .remove();
+  const arc = d3.arc()
+    .innerRadius(innerRadius)
+    .outerRadius(radius);
+
+  function arcTween(a) {
+    const i = d3.interpolate(this._current, a);
+    this._current = i(1);
+    return t => arc(i(t));
   }
 
-  static generateCircles(g, xScale, yScale, data, className, type) {
-    const t = d3.transition()
-      .duration(750);
+  function update() {
+    // Join new data
+    const path = svg.selectAll('path')
+      .data(pie(data));
 
-    // JOIN new data with old elements.
-    const indexOffset = (type === 'future') ? 1 : 0;
-    const circle = g.selectAll(`.dot.${className}`)
-      .data(data);
+    // Update existing arcs
+    path.transition().duration(200).attrTween('d', arcTween);
 
-    // EXIT old elements not present in new data.
-    circle.exit()
-      .transition(t)
-      .style('fill-opacity', 1e-6)
-      .style('stroke-opacity', 1e-6)
-      .remove();
-
-    // UPDATE old elements present in new data.
-    circle
-      .style('fill-opacity', 1)
-      .style('stroke-opacity', 1)
-      .transition(t)
-      .attr('cx', (d, i) => xScale(i + indexOffset))
-      .attr('cy', (d, i) => yScale(d.value))
-      .attr('r', 5);
-
-    // ENTER new elements present in new data.
-    circle.enter().append('circle')
-      .attr('class', (d, i) => {
-        const c = (i === 0 && type === 'future') ? 'hidden' : '';
-        return `dot ${className} ${type} dot-${i} ${c}`;
-      })
-      .attr('cx', (d, i) => xScale(i + indexOffset))
-      .attr('cy', (d, i) => yScale(d.value))
-      .attr('vector-effect', 'non-scaling-stroke')
-      .style('fill-opacity', 1e-6)
-      .style('stroke-opacity', 1e-6)
-      .attr('r', 5)
-      .transition(t)
-      .style('fill-opacity', 1)
-      .style('stroke-opacity', 1);
+    // Enter new arcs
+    path.enter().append('path')
+      .attr('fill', (d, i) => color(i))
+      .attr('d', arc)
+    // .attr('stroke', 'white')
+    // .attr('stroke-width', '6px')
+      .each(function(d) { this._current = d; });
   }
 
-  static renderChartBG(svg, width, height, margin) {
-    const innerDimensions = ChartUtils.getInnerDimensions(width, height, margin);
+  // add text
+  // svg.append('text')
+  //   .attr({
+  //     x: radius,
+  //     y: radius,
+  //     'text-anchor': 'middle'
+  //   })
+  //   .text('30%');
 
-    // white bg
-    svg.append('rect')
-      .attr('class', 'chart-bg')
-      .attr('width', innerDimensions.w)
-      .attr('height', innerDimensions.h)
-      .attr('x', margin.left)
-      .attr('y', margin.top)
-      .attr('vector-effect', 'non-scaling-stroke');
+  const percent = Math.round((data[0].count / (data[0].count + data[1].count)) * 100);
 
-    // vertical lines
-    for (let index = 1; index <= 4; index++) {
-      const x = margin.left + (innerDimensions.w * (index * 0.2));
-      svg.append('line')
-        .attr('class', 'vertical-line')
-        .attr('x1', x)
-        .attr('y1', margin.top)
-        .attr('x2', x)
-        .attr('y2', height - margin.bottom)
-        .attr('vector-effect', 'non-scaling-stroke');
-    }
-  }
+  console.log('data', percent);
 
-  static renderKeyBG(svg, width, height, margin, key) {
-    const innerDimensions = ChartUtils.getInnerDimensions(width, height, margin);
-    svg.append('rect')
-      .attr('class', 'key-bg')
-      .attr('width', innerDimensions.w)
-      .attr('height', key.height)
-      .attr('x', margin.left)
-      .attr('y', key.y)
-      .attr('vector-effect', 'non-scaling-stroke');
-  }
+  svg.append('g')
+    .attr('text-anchor', 'middle')
+    .append('text')
+    .text(`${percent}%`)
+    .attr('class', 'title');
 
-  static getInnerDimensions(width, height, margin) {
-    const w = width - margin.left - margin.right;
-    const h = height - margin.top - margin.bottom;
-    return { w, h };
-  }
 
-  static getXScale(data, width, margin) {
-    return d3.scaleTime()
-      .domain([0, 5])
-      .range([margin.left, width - margin.right]);
-  }
+  update();
+  // });
+};
 
-  static getYScale(data, height, margin) {
-    const yMax = d3.max(data, array => d3.max(array, d => d.value));
-    return d3.scaleLinear()
-      .domain([0, yMax])/* .nice(1) */
-      .range([height - margin.bottom, margin.top]);
-  }
-
-  static buildYAxis(svg, yScale) {
-    const yAxis = d3.axisLeft(yScale)
-      .ticks(10)
-      .tickFormat(d3.format('.2s'));
-
-    svg.append('g')
-      .attr('class', 'y-axis axis')
-      .attr('transform', `translate(${40},0)`)
-      .call(yAxis);
-
-    return yAxis;
-  }
-}
-
-export default ChartUtils;
+export const foo = () => {};

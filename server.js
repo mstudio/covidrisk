@@ -37,9 +37,9 @@ app.use(timeout(serverConfig.request_timeout));
 app.use(bodyParser.json(serverConfig.body_parser.json));
 app.use(bodyParser.urlencoded(serverConfig.body_parser.urlencoded));
 app.use(compression());
-// app.use((req, res, next) => {
-//   require('./server/routes').default(req, res, next); // eslint-disable-line global-require
-// });
+app.use((req, res, next) => {
+  require('./server/routes').default(req, res, next); // eslint-disable-line global-require
+});
 app.use(errorHandler);
 
 /*
