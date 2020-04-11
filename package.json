@@ -15,6 +15,7 @@
   "dependencies": {
     "@carbon/grid": "^10.9.2",
     "async": "^2.6.0",
+    "autoprefixer": "^7.1.6",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
     "connect-timeout": "^1.9.0",
@@ -43,7 +44,6 @@
     "@carbon/icons": "^10.9.3",
     "@carbon/icons-react": "^10.9.3",
     "@types/jest": "^25.2.1",
-    "autoprefixer": "^7.1.6",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-imports": "^2.0.0",
