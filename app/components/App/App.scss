@@ -37,6 +37,7 @@
     margin: 0 0 0 rem(20);
     @include breakpoint(medium) {
       margin-top: rem(40);
+      margin-left: 0;
       width: 100%;
     }
 
@@ -51,6 +52,12 @@
         text-decoration: underline;
       }
     }
+  }
+}
+
+.chart#bar-chart-1 {
+  @include breakpoint(medium) {
+    margin-top: rem(40);
   }
 }
 

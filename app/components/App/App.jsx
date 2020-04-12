@@ -72,7 +72,7 @@ const App = () => {
         <h1>COVID-19 Risk in the U.S.</h1>
         <p>Some news stories in the U.S. have focused on <a href="https://www.nytimes.com/2020/03/27/sunday-review/coronavirus-hospitalized.html" target="_blank">outliers</a>: people with no underlying conditions who have had serious complications or <a href="https://www.nytimes.com/interactive/2020/03/13/world/asia/coronavirus-death-life.html" target="_blank">died from COVID-19</a>. The actual data paints a somewhat different picture.</p>
         <p>This page is in no way meant to encourage people to stop social distancing, or reopen businesses. Instead, it's meant to show the risk of danger from COVID-19, and maybe reduce the amount of anxiety around it.</p>
-        <p>The data used for thes charts is supplied by <a href="https://covidtracking.com/" target="_blank">The COVID Tracking Project</a></p>
+        <p>The data used for these charts is supplied by <a href="https://covidtracking.com/" target="_blank">The COVID Tracking Project</a></p>
 
   {data && <p><em>Data last updated {new Date(data.lastModified).toTimeString()}</em></p>}
 
@@ -95,6 +95,8 @@ const App = () => {
         <svg className="chart chart--bar" id="bar-chart-1" width="100%" height="100%" preserveAspectRatio="xMinYMin meet" viewBox="0 0 540 540" />
       </section>
 
+      <hr />
+
       {data &&
       <React.Fragment>
         <header className="chart--header">
@@ -116,6 +118,7 @@ const App = () => {
         </article>
       </section>
 
+      <hr />
 
       {/* {data &&
       <React.Fragment>
