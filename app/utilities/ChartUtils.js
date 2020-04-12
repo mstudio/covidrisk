@@ -30,7 +30,7 @@ export const drawBarChart = (selector, data, colors) => {
 
   const yAxis = g => g
     .attr('transform', `translate(${margin.left},0)`)
-    .call(d3.axisLeft(y).ticks(null, data.format).tickSizeInner(-width))
+    .call(d3.axisLeft(y).ticks(null, d3.format('s')).tickSizeInner(-width))
     .call(g => g.select('.domain').remove())
     .call(g => g.append('text')
       .attr('x', -margin.left)

@@ -70,9 +70,11 @@ const App = () => {
     <main role="main" className="page bx">
       <header className="intro--header">
         <h1>COVID-19 Risk in the U.S.</h1>
-        <p>Some news stories in the U.S. have focused on <a href="https://www.nytimes.com/interactive/2020/03/13/world/asia/coronavirus-death-life.html" target="_blank">stories</a> of <a href="https://www.nytimes.com/2020/03/27/sunday-review/coronavirus-hospitalized.html" target="_blank">outliers</a>: people with no underlying conditions who have had serious complications or died from COVID-19. The actual data paints a somewhat different picture.</p>
+        <p>Some news stories in the U.S. have focused on <a href="https://www.nytimes.com/2020/03/27/sunday-review/coronavirus-hospitalized.html" target="_blank">outliers</a>: people with no underlying conditions who have had serious complications or <a href="https://www.nytimes.com/interactive/2020/03/13/world/asia/coronavirus-death-life.html" target="_blank">died from COVID-19</a>. The actual data paints a somewhat different picture.</p>
         <p>This page is in no way meant to encourage people to stop social distancing, or reopen businesses. Instead, it's meant to show the risk of danger from COVID-19, and maybe reduce the amount of anxiety around it.</p>
-        <p>A note about the data...</p>
+        <p>The data used for thes charts is supplied by <a href="https://covidtracking.com/" target="_blank">The COVID Tracking Project</a></p>
+
+  {data && <p><em>Data last updated {new Date(data.lastModified).toTimeString()}</em></p>}
 
       </header>
 
