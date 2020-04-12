@@ -82,11 +82,11 @@ const App = () => {
       <React.Fragment>
         <header className="chart--header">
           <h2>{getPercent(data.totalTestResults, US_POPULATION)} of the U.S. has been tested.</h2>
-          <caption className="caption">
+          <div className="caption">
             <span className="caption--a">Tested: {data.totalTestResults.toLocaleString()}</span>
             <span className="caption--b">Untested: {(US_POPULATION - data.totalTestResults).toLocaleString()}</span>
             <span className="caption--c">Total Est. Population: {US_POPULATION.toLocaleString()}</span>
-          </caption>
+          </div>
         </header>
       </React.Fragment>
       }

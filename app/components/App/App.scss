@@ -4,11 +4,9 @@
   &--row {
     display: flex;
     flex-direction: row;
-  }
-
-  &--col {
-    display: flex;
-    width: 50%;
+    @include breakpoint(medium) {
+      flex-wrap: wrap;
+    }
   }
 }
 
@@ -29,11 +27,18 @@
 
   > .chart {
     width: 50%;
+    @include breakpoint(medium) {
+      width: 100%;
+    }
   }
 
   > article {
     width: 50%;
     margin: 0 0 0 rem(20);
+    @include breakpoint(medium) {
+      margin-top: rem(40);
+      width: 100%;
+    }
 
     h2 {
       text-align: center;
@@ -53,6 +58,9 @@
   &--header {
     text-align: center;
     margin: rem(40) 0 rem(50) 0;
+    @include breakpoint(medium) {
+      text-align: left;
+    }
 
     h2 {
       font-size: rem(36);
@@ -61,11 +69,22 @@
     .caption {
       display: flex;
       justify-content: center;
+      @include breakpoint(medium) {
+        flex-direction: column;
+        justify-content: space-around;
+      }
       span {
+        text-align: center;
         display: inline-block;
         margin: 0 rem(32);
         position: relative;
         font-size: rem(20);
+        @include breakpoint(medium) {
+          display: block;
+          margin: rem(10) rem(32);
+          text-align: left;
+          font-size: rem(16);
+        }
         &::before {
           content: "";
           display: block;
@@ -95,6 +114,10 @@
     span.note {
       display: inline-block;
       margin: rem(10);
+      @include breakpoint(medium) {
+        font-size: rem(14);
+        text-align: left;
+      }
     }
   }
   &--donut {
