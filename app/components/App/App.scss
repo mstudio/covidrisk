@@ -23,6 +23,29 @@
 
 .chart-container {
   margin: rem(20) 0 rem(120) 0;
+  display: flex;
+  justify-content: space-around;
+
+  > .chart {
+    width: 60%;
+  }
+
+  > article {
+    width: 40%;
+    margin: 0 0 0 rem(20);
+
+    h2 {
+      text-align: center;
+      background: $white;
+      border: 1px solid $black;
+      padding: rem(20) rem(10);
+
+      em {
+        font-style: normal;
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 .chart {
@@ -59,6 +82,11 @@
       &--b {
         &::before {
           background-color: #b4b7b9;
+        }
+      }
+      &--c {
+        &::before {
+          background-color: #e8ae31;
         }
       }
     }

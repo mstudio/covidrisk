@@ -2,14 +2,10 @@
 
 body {
   font-family: $sans;
-}
 
-h1 {
-  font-size: rem(48px);
-}
-
-h2 {
-  font-size: rem(36px);
+  h1 {
+    font-size: rem(48);
+  }
 }
 
 .semibold {

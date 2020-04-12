@@ -4,9 +4,9 @@
 import * as d3 from 'd3';
 import { getPercent } from './MathUtils';
 
-export const colors = ['#4682b4', '#b4b7b9'];
+// export const colors = ['#4682b4', '#b4b7b9'];
 
-export const drawBarChart = (selector, data) => {
+export const drawBarChart = (selector, data, colors) => {
   const width = 540;
   const height = 540;
   const color = d3.scaleOrdinal(colors);
@@ -21,7 +21,7 @@ export const drawBarChart = (selector, data) => {
     .padding(0.1);
 
   const y = d3.scaleLinear()
-    .domain([0, d3.max(data, d => d.value)]).nice()
+    .domain([0, d3.max(data, d => d)]).nice()
     .range([height - margin.bottom, margin.top]);
 
   const xAxis = g => g
@@ -50,8 +50,8 @@ export const drawBarChart = (selector, data) => {
     .data(data)
     .join('rect')
     .attr('x', (d, i) => x(i))
-    .attr('y', d => y(d.value))
-    .attr('height', d => y(0) - y(d.value))
+    .attr('y', d => y(d))
+    .attr('height', d => y(0) - y(d))
     .attr('width', x.bandwidth())
     .attr('fill', (d, i) => {
       console.log('filling ', i);
@@ -59,7 +59,7 @@ export const drawBarChart = (selector, data) => {
     });
 };
 
-export const drawDonutChart = (selector, data) => {
+export const drawDonutChart = (selector, data, colors) => {
   const width = 540;
   const height = 540;
   const radius = Math.min(width, height) / 2;
@@ -72,7 +72,7 @@ export const drawDonutChart = (selector, data) => {
   const color = d3.scaleOrdinal(colors);
 
   const pie = d3.pie()
-    .value(d => d.value)
+    .value(d => d)
     .sort(null);
 
   const arc = d3.arc()
@@ -100,7 +100,7 @@ export const drawDonutChart = (selector, data) => {
       .each(function(d) { this._current = d; });
   }
 
-  const percent = getPercent(data[0].value, (data[0].value + data[1].value));
+  const percent = getPercent(data[0], (data[0] + data[1]));
 
   svg.append('g')
     .attr('text-anchor', 'middle')
