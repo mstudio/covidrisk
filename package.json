@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@carbon/grid": "^10.9.2",
-    "async": "^2.6.0",
+    "async": "^2.6.4",
     "autoprefixer": "^7.1.6",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
